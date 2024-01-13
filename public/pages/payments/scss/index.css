@@ -1,0 +1,25 @@
+.input-find-shipment-wrapper {
+    width: 35%;
+}
+
+.table thead tr th, .table thead tr td {
+    padding: 10px 20px;
+}
+
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 1024px) {
+    .input-find-shipment-wrapper {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .input-find-shipment-wrapper {
+        width: 100%;
+    }
+}
