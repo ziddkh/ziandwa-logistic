@@ -35,7 +35,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-6 col-12 mr-auto">
                                                         <div class="d-flex">
-                                                            <img class="company-logo" src="{{ asset('phl-logo.png') }}" alt="company">
+                                                            <img class="company-logo" src="{{ asset('tsl-logo.png') }}" alt="company">
                                                         </div>
                                                         <h5 class=" fw-bold mt-3 mb-1">Tiga Sembilan Logistic</h5>
                                                         <p class="inv-email-address fw-normal">+62 82319983738</p>

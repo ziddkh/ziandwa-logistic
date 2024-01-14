@@ -15,7 +15,7 @@ class CustomerRepository
 
     protected function generateCode()
     {
-        $prefix = 'PHLCS';
+        $prefix = 'TSLCS';
         $lastCustomer = $this->customer->where('code', 'like', $prefix.'%')->orderBy('code', 'desc')->first();
         $lastSequence = 0;
         if (! empty($lastCustomer)) {
