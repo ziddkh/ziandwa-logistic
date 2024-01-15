@@ -45,6 +45,7 @@
                                                         <p class="inv-list-number mt-sm-3 pb-sm-2 mt-4"><span class="inv-title">Invoice : </span> <span class="inv-number">{{ $invoiceHeader->invoice_number }}</span></p>
                                                         <p class="inv-created-date mt-sm-5 mt-3"><span class="inv-title">Tanggal Terbit : </span> <span class="inv-date">{{ $invoiceHeader->created_at_formatted }}</span></p>
                                                         <p class="inv-created-date mt-1"><span class="inv-title">Nama Pelabuhan : </span> <span class="inv-date">{{ !!$invoiceHeader->paymentDetail->paymentHeader->shipmentHeader->harbor_name ? $invoiceHeader->paymentDetail->paymentHeader->shipmentHeader->harbor_name : '-' }}</span></p>
+                                                        <p class="inv-created-date mt-1"><span class="inv-title">Tanggal Pengiriman : </span> <span class="inv-date">{{ !!$invoiceHeader->departure_date ? \Carbon\Carbon::createFromFormat('Y-m-d', $invoiceHeader->departure_date)->format('d M Y') : '-' }}</span></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -127,7 +128,7 @@
                                                             <div class="row">
                                                                 <div class="col-12">
                                                                     <div class="mb-2">Transfer Rekening</div>
-                                                                    <p class="">BCA : 0280226190 565 a.n. Khairuddin Ade</p>
+                                                                    <p class="">BCA : 0280226190 a.n. Khairuddin Ade</p>
                                                                 </div>
                                                             </div>
                                                         </div>
