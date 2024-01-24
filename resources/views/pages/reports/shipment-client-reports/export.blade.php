@@ -127,13 +127,13 @@
 <body>
     <div class="container">
         <div style="display: flex !important; align-items: center !important; gap: 16px !important; margin-bottom: 40px !important;">
-            <div style="width: 120px !important; height: 120px !important;">
-                <img class="company-logo" src="{{ asset('phl-logo.png') }}" alt="company" style="width: 100% !important; height: 100% !important;">
+            <div style="width: 80px !important; height: 80px !important;">
+                <img class="company-logo" src="{{ asset('tsl-logo.png') }}" alt="company" style="width: 100% !important; height: 100% !important;">
             </div>
             <div>
-                <h1 style="font-weight: 800 !important; font-size: 24px !important; text-transform: uppercase !important; margin-bottom: 8px !important; margin-top: 0px !important; color: #b71b1b !important;">Putra Halton Logistik</h1>
-                <p style="margin-bottom: 4px !important; margin-top: 0px !important;">Jalan Kebon Kacang 5 No. 12 & 14 Tanah Abang - Jakarta Pusat</p>
-                <p style="margin: 0px !important;">Kontak: 0878 1980 9114 (Admin) - 0852 1656 3549 (Samsudin)</p>
+                <h1 style="font-weight: 800 !important; font-size: 24px !important; text-transform: uppercase !important; margin-bottom: 8px !important; margin-top: 0px !important; color: #b71b1b !important;">Tiga Sembilan Logistik</h1>
+                <p style="margin-bottom: 4px !important; margin-top: 0px !important;">Jl. Kebon Kacang 4, Nomor 39, Kelurahan Tanah Abang, Kecamatan Tanah Abang, Kota Jakarta Pusat.</p>
+                <p style="margin: 0px !important;">Kontak: +62 82319983738</p>
             </div>
         </div>
         <h1 style="margin: 0 !important;">Manifest Barang Perwakilan</h1>
