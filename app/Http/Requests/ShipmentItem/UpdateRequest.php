@@ -44,7 +44,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'ship_name' => 'required|string',
+            'ship_name' => 'nullable|string',
             'type' => 'required|string',
             'length' => 'required_if:type,bale',
             'width' => 'required_if:type,bale',

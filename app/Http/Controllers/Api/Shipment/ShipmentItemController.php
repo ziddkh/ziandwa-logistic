@@ -31,7 +31,7 @@ class ShipmentItemController extends Controller
             if ($request->type === 'bale') {
                 $this->shipmentItem->create([
                     'shipment_header_id' => $shipment->id,
-                    'ship_name' => $request->ship_name,
+                    'ship_name' => !empty($request->ship_name) ? $request->ship_name : $shipment->shipmentItems->first()->ship_name,
                     'type' => $request->type,
                     'width' => $request->width,
                     'length' => $request->length,
@@ -44,7 +44,7 @@ class ShipmentItemController extends Controller
             if ($request->type === 'vehicle') {
                 $this->shipmentItem->create([
                     'shipment_header_id' => $shipment->id,
-                    'ship_name' => $request->ship_name,
+                    'ship_name' => !empty($request->ship_name) ? $request->ship_name : $shipment->shipmentItems->first()->ship_name,
                     'type' => $request->type,
                     'price' => $request->price,
                     'description' => $request->description,
@@ -87,21 +87,21 @@ class ShipmentItemController extends Controller
             $freight = $shipment->typeOfShipment->freight;
             if ($request->type === 'bale') {
                 $item = $request->only([
-                    'ship_name',
                     'width',
                     'length',
                     'height',
                 ]);
+                $item['ship_name'] = !empty($request->ship_name) ? $request->ship_name : $shipment->shipmentItems->first()->ship_name;
                 $item['vol_weight'] = $item['width'] * $item['length'] * $item['height'] / $freight;
                 $item['price'] = $item['vol_weight'] * $shipment->destination_cost;
             }
 
             if ($request->type === 'vehicle') {
                 $item = $request->only([
-                    'ship_name',
                     'price',
                     'description',
                 ]);
+                $item['ship_name'] = !empty($request->ship_name) ? $request->ship_name : $shipment->shipmentItems->first()->ship_name;
             }
             $shipmentItem->update($item);
             $shipment->update([

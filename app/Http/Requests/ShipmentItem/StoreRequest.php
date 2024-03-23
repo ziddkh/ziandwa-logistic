@@ -44,7 +44,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'ship_name' => 'required|string',
+            'ship_name' => 'nullable|string',
             'type' => 'required|string',
             'length' => 'required_if:type,bale',
             'width' => 'required_if:type,bale',
@@ -63,7 +63,7 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'ship_name.required' => 'Nama kapal harus diisi',
+            // 'ship_name.required' => 'Nama kapal harus diisi',
             'ship_name.string' => 'Nama kapal harus berupa string',
             'type.required' => 'Jenis barang harus diisi',
             'type.string' => 'Jenis barang harus berupa string',
