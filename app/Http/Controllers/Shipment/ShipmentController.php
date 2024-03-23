@@ -26,7 +26,7 @@ class ShipmentController extends Controller
     {
         $title = 'List Pengiriman';
         $shipments = ShipmentHeader::with(['shipmentItems', 'paymentHeader.paymentDetails'])
-            ->where('departure_date', '>=', Carbon::today()->format('Y-m-d'))
+            // ->where('departure_date', '>=', Carbon::today()->format('Y-m-d'))
             ->latest('created_at')
             ->get();
 
