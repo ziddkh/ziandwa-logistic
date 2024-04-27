@@ -41,13 +41,13 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end mb-3">
-                        @if (auth()->user()->can('view-shipment'))
+                        @if (auth()->user()->can('edit-shipment'))
                             <button id="btn-edit-information" class="btn btn-primary btn-sm">Edit Informasi Pengiriman</button>
                         @endif
                     </div>
                     <hr>
                     <div class="d-flex justify-content-end mb-3">
-                        @if (auth()->user()->can('view-shipment'))
+                        @if (auth()->user()->can('edit-shipment'))
                             <button id="btn-create-bale" class="btn btn-secondary btn-sm me-3">Tambah Bal</button>
                             <button id="btn-create-vehicle" class="btn btn-secondary btn-sm">Tambah Kendaraan</button>
                         @endif
