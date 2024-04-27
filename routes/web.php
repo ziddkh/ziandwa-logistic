@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
             Route::controller(ShipmentController::class)->name('shipments-2.')->group(function () {
                 Route::get('list', 'index')->middleware('can:view-shipment')->name('index');
                 Route::get('tambah', 'create')->middleware('can:create-shipment')->name('create');
-                Route::get('{uuid}/detail', 'show')->middleware('can:edit-shipment')->name('show');
+                Route::get('{uuid}/detail', 'show')->middleware('can:view-shipment')->name('show');
                 Route::post('store', 'store')->middleware('can:delete-shipment')->name('store');
                 // Route::get('laporan', 'report')->name('report');
             });

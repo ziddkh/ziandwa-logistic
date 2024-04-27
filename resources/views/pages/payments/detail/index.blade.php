@@ -137,7 +137,7 @@
                 <div class="widget-content widget-content-area">
                     <div class="d-flex flex-column flex-sm-row justify-content-between mb-4" style="gap: 4px;">
                         <h5 class="fw-bold truncate">Riwayat Pembayaran</h5>
-                        @if ($payment->payment_status !== 'Lunas')
+                        @if ($payment->payment_status !== 'Lunas' && auth()->user()->can('can:resolve-payment'))
                             <button id="btn-create-payment" class="btn btn-primary order-1 order-lg-2" style="width: fit-content;">Tambah Pembayaran</button>
                         @endif
                     </div>
@@ -174,7 +174,7 @@
                                                     <a href="{{ route('invoice.show', $paymentDetail->invoiceHeader->uuid) }}" class="action-btn btn-view bs-tooltip" data-toggle="tooltip" data-placement="top" title="Detail">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                                     </a>
-                                                    @if ($paymentDetail->payment_status === 'Pending')
+                                                    @if ($paymentDetail->payment_status === 'Pending' && auth()->user()->can('can:resolve-payment'))
                                                         <a href="javascript:void(0);" class="action-btn btn-view bs-tooltip btn-confirmation-payment" data-url="{{ route('payment.confirmation-payment', $paymentDetail->uuid) }}" data-toggle="tooltip" data-placement="top" title="Konfirmasi Pembayaran">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                                         </a>
