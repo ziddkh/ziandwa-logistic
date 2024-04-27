@@ -148,8 +148,8 @@
                               <div class="row">
                                 <div class="col-12">
                                   <div class="mb-2">Transfer Rekening :</div>
-                                  <p class="mb-1">Fadli Mursid</p>
-                                  <p class="">BRI : 0433 0100 0477 565</p>
+                                  <p class="mb-1">Doby Mursid</p>
+                                  <p class="">BNI : 1846309145</p>
 
                                 </div>
                               </div>
