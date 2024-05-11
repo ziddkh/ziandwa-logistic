@@ -179,7 +179,11 @@
                                   </p>
                                 </div>
                                 <div class="col-sm-8 col-7">
-                                  <p class=" discount-rate">Subtotal :</p>
+                                    @if ($invoiceHeader->paymentDetail->paymentHeader->payment_method === 'DP')
+                                    <p class=" discount-rate">DP :</p>
+                                    @else
+                                    <p class=" discount-rate">Subtotal :</p>
+                                    @endif
                                 </div>
                                 <div class="col-sm-4 col-5">
                                   <p class="">Rp. {{ number_format($invoiceHeader->total_amount, 0, ',', '.') }}

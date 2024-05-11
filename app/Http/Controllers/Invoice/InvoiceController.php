@@ -18,7 +18,6 @@ class InvoiceController extends Controller
     {
         $title = 'Invoice Detail';
         $invoiceHeader = $this->invoiceHeader->with('paymentDetail.paymentHeader.shipmentHeader', 'invoiceItems')->where('uuid', $uuid)->firstOrFail();
-
         return view('pages.invoices.detail.index', compact('title', 'invoiceHeader'));
     }
 }
