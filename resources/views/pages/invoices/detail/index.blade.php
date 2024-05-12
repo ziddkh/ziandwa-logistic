@@ -178,6 +178,14 @@
                                     {{ number_format($invoiceHeader->paymentDetail->paymentHeader->shipmentHeader->destination_cost, 0, ',', '.') }}
                                   </p>
                                 </div>
+                                @if ($invoiceHeader->paymentDetail->paymentHeader->payment_method === 'DP')
+                                    <div class="col-sm-8 col-7">
+                                        <p class=" discount-rate">Total Harga :</p>
+                                    </div>
+                                    <div class="col-sm-4 col-5">
+                                        <p class=" discount-rate">Rp. {{ number_format($invoiceHeader->paymentDetail->paymentHeader->total_payment, 0, ',', '.') }}</p>
+                                    </div>
+                                @endif
                                 <div class="col-sm-8 col-7">
                                     @if ($invoiceHeader->paymentDetail->paymentHeader->payment_method === 'DP')
                                     <p class=" discount-rate">DP :</p>
@@ -197,13 +205,13 @@
                                     {{ number_format($invoiceHeader->paymentDetail->paymentHeader->discount, 0, ',', '.') }}
                                   </p>
                                 </div>
-                                <div class="col-sm-8 col-7">
+                                {{-- <div class="col-sm-8 col-7">
                                   <p class=" discount-rate">Total :</p>
                                 </div>
                                 <div class="col-sm-4 col-5">
                                   <p class="">Rp. {{ number_format($invoiceHeader->total_amount, 0, ',', '.') }}
                                   </p>
-                                </div>
+                                </div> --}}
                                 <div class="col-sm-8 col-7 grand-total-title mt-3">
                                   <h4 class="text-dark">Total Pembayaran : </h4>
                                 </div>
