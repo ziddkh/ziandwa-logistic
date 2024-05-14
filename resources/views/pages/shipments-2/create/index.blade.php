@@ -111,6 +111,7 @@
                             <table id="table-bales" class="table table-bordered bg-white mb-0">
                                 <thead>
                                     <tr>
+                                        <th class="rounded-0 fw-bold" style="min-width: 70px !important; width: 70px !important; max-width: 70px !important;">No.</th>
                                         <th class="rounded-0 fw-bold" style="width: 232px; min-width: 150px;">Panjang</th>
                                         <th class="rounded-0 fw-bold" style="width: 232px; min-width: 150px;">Lebar</th>
                                         <th class="rounded-0 fw-bold" style="width: 232px; min-width: 150px;">Tinggi</th>
@@ -122,7 +123,7 @@
                                 <tbody>
 
                                     <tr id="add-bale-button-row">
-                                        <td colspan="6" class="text-center">
+                                        <td colspan="7" class="text-center">
                                             <button type="button" id="add-bale-button" class="w-100 btn btn-primary">
                                                 <span>Tambah Bal</span>
                                             </button>
@@ -142,6 +143,7 @@
                             <table id="table-vehicles" class="table table-bordered bg-white mb-0">
                                 <thead>
                                     <tr>
+                                        <th class="rounded-0 fw-bold" style="min-width: 70px !important; width: 70px !important; max-width: 70px !important;">No.</th>
                                         <th class="rounded-0 fw-bold" style="width: 250px; min-width: 200px;">Deskripsi</th>
                                         <th class="rounded-0 fw-bold" style="width: 250px; min-width: 200px;">Harga</th>
                                         <th class="rounded-0 fw-bold text-center" style="width: 80px;">Aksi</th>
@@ -149,7 +151,7 @@
                                 </thead>
                                 <tbody>
                                     <tr id="add-vehicle-button-row">
-                                        <td colspan="3" class="text-center">
+                                        <td colspan="4" class="text-center">
                                             <button type="button" id="add-vehicle-button" class="w-100 btn btn-primary">
                                                 <span>Tambah Kendaraan</span>
                                             </button>

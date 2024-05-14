@@ -95,6 +95,7 @@ buttonAddBale.on('click', function (e) {
 
     const baleHTML = `
         <tr>
+            <td><p id="bale-iteration-${currentIndex}">${currentIndex}</p></td>
             <td>
                 <input type="text" id="length-${currentIndex}" name="items[bales][${currentIndex}][length]" class="form-control form-control-sm input-only-number">
                 <span class="invalid-feedback"></span>
@@ -131,10 +132,37 @@ buttonAddBale.on('click', function (e) {
     baleIndex++
 })
 
+function updateIndices(wrapper, type) {
+    wrapper.find('tbody tr').each(function(index, element) {
+        const newIndex = index + 1;
+        $(element).find('input, p').each(function() {
+            const id = $(this).attr('id');
+            const name = $(this).attr('name');
+            if (id) {
+                const newId = id.replace(/-\d+$/, `-${newIndex}`);
+                $(this).attr('id', newId);
+                if ($(this).is('p') && id.startsWith(`${type}-iteration-`)) {
+                    $(this).text(newIndex); // Update the iteration number
+                }
+            }
+            if (name) {
+                const newName = name.replace(/\[\d+\]/, `[${newIndex}]`);
+                $(this).attr('name', newName);
+            }
+        });
+        // Update input event with the new index
+        $(element).find('input').off('input').on('input', function() {
+            calculateBalesVolumeAndPrice(newIndex);
+        });
+    });
+}
+
 
 balesWrapper.on('click', '.remove-bale-button', function (e) {
     e.preventDefault()
-    $(this).closest('tr').remove()
+    $(this).closest('tr').remove();
+    updateIndices(balesWrapper, 'bale'); // Update indices after a row is removed
+    baleIndex = balesWrapper.find('tbody tr').length;
 })
 
 buttonAddVehicle.on('click', function (e) {
@@ -142,6 +170,7 @@ buttonAddVehicle.on('click', function (e) {
     const currentIndex = vehicleIndex
     const vehicleHTML = `
         <tr>
+            <td><p id="vehicle-iteration-${currentIndex}">${currentIndex}</p></td>
             <td>
                 <input type="text" class="form-control form-control-sm" id="vehicle-description-${currentIndex}" name="items[vehicles][${currentIndex}][description]">
                 <span class="invalid-feedback"></span>
@@ -169,6 +198,8 @@ buttonAddVehicle.on('click', function (e) {
 vehiclesTable.on('click', '.remove-vehicle-button', function (e) {
     e.preventDefault()
     $(this).closest('tr').remove()
+    updateIndices(vehiclesTable, 'vehicle'); // Update indices after a row is removed
+    vehicleIndex = vehiclesTable.find('tbody tr').length;
 })
 
 function setLoading(loading) {
