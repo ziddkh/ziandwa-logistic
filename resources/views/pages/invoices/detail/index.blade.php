@@ -79,6 +79,7 @@
                           <table class="table">
                             <thead class="">
                               <tr>
+                                <th scope="col" class="text-center">No.</th>
                                 <th scope="col" class="text-start" style="width: 200px; min-width: 200px;">Nama Kapal
                                 </th>
                                 <th scope="col" class="text-center">Panjang</th>
@@ -93,6 +94,8 @@
                               @php
                                 $totalVolWeight = 0;
                                 $totalColly = $invoiceHeader->invoiceItems->count();
+                                $indexBale = 0;
+                                $indexVehicle = 0;
                               @endphp
                               @foreach ($invoiceHeader->invoiceItems as $item)
                                 @if ($item->type === 'bale')
@@ -100,6 +103,7 @@
                                     $totalVolWeight += $item->vol_weight;
                                   @endphp
                                   <tr>
+                                    <td class="text-center">{{ $indexBale++ }}</td>
                                     <td class="text-start" style="width: 200px; min-width: 200px;">
                                       {{ $item->ship_name }}</td>
                                     <td class="text-center">{{ $item->length }}</td>
@@ -118,6 +122,7 @@
                           <table class="table">
                             <thead class="">
                               <tr>
+                                <th scope="col" class="text-center">No.</th>
                                 <th scope="col" class="text-start" style="width: 200px; min-width: 200px;">Nama Kapal
                                 </th>
                                 <th scope="col" class="text-start">Deskripsi</th>
@@ -129,6 +134,7 @@
                               @foreach ($invoiceHeader->invoiceItems as $item)
                                 @if ($item->type === 'vehicle')
                                   <tr>
+                                    <td class="text-center">{{ $indexVehicle }}</td>
                                     <td class="text-start" style="width: 200px; min-width: 200px;">
                                       {{ $item->ship_name }}</td>
                                     <td class="text-start">{{ $item->description }}</td>
