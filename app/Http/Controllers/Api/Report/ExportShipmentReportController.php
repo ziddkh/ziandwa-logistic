@@ -18,7 +18,10 @@ class ExportShipmentReportController extends Controller
     {
       $title = 'Laporan Pengiriman Untuk Pelanggan';
       $currentDate = Carbon::now()->format('Y-m-d');
-      $shipmentsReports = ShipmentHeader::with(['shipmentItems', 'paymentHeader']);
+      $shipmentsReports = ShipmentHeader::with([
+          'shipmentItems',
+          'paymentHeader.latestPaymentDetail.invoiceHeader'
+      ]);
 
       if ($request->filled('departure_date')) {
           $shipmentsReports = $shipmentsReports->where('departure_date', $request->departure_date);
@@ -35,7 +38,6 @@ class ExportShipmentReportController extends Controller
       }
 
       $shipmentsReports = $shipmentsReports->get();
-
       return view('pages.reports.shipment-reports.export', compact('title', 'shipmentsReports'));
     }
 }

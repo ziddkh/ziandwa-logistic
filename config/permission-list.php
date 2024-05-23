@@ -13,6 +13,11 @@ return [
     'show-payment',
     'resolve-payment',
 
+    'create-additional-payment',
+    'edit-additional-payment',
+    'delete-additional-payment',
+
+
     // Report
     'report-shipment',
     'report-shipment-client',

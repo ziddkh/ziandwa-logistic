@@ -2,6 +2,7 @@
 
 namespace App\Models\Payment;
 
+use App\Models\PaymentAdditional;
 use App\Models\Shipment\ShipmentHeader;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,6 +21,7 @@ class PaymentHeader extends Model
         'payment_number',
         'payment_method',
         'payment_status',
+        'additional_payment',
         'total_payment',
     ];
 
@@ -53,5 +55,15 @@ class PaymentHeader extends Model
     public function paymentDetails(): HasMany
     {
         return $this->hasMany(PaymentDetail::class);
+    }
+
+    public function latestPaymentDetail()
+    {
+        return $this->hasOne(PaymentDetail::class)->latest();
+    }
+
+    public function paymentAdditionals(): HasMany
+    {
+        return $this->hasMany(PaymentAdditional::class);
     }
 }

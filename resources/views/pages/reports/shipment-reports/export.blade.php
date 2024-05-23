@@ -151,10 +151,14 @@
         <tr>
           <th style="text-align: center !important">#</th>
           <th>Pelanggan</th>
+          <th>Alamat</th>
           <th>Tanggal Dikirim</th>
+          <th>Tipe Pembayaran</th>
+          <th>Status</th>
           <th>Jml Koli</th>
           <th>Kg Vol</th>
-          <th>Harga</th>
+          <th>Total</th>
+          <th>Total Bayar</th>
       </tr>
       </thead>
       <tbody>
@@ -162,29 +166,36 @@
           <tr>
               <td style="text-align: center !important;">{{ $loop->iteration }}</td>
               <td>{{ $transaction->recipient_name }}</td>
+              <td>{{ $transaction->harbor_name }}</td>
               <td>{{ $transaction->departure_date }}</td>
+              <td style="text-align: left !important;">{{ $transaction->paymentHeader->payment_method ?? '-' }}</sup></td>
+              <td>{{ $transaction->paymentHeader->payment_status ?? '-' }}</td>
               <td style="text-align: right !important;">{{ $transaction->shipmentItems->count() }}</td>
               <td style="text-align: right !important;">{{ $transaction->total_vol_weight }} m<sup>3</sup></td>
-              <td style="text-align: right !important;">Rp. {{ number_format($transaction->paymentHeader->total_payment, 0, ',', '.') }}</td>
+              <td style="text-align: right !important;">Rp. {{ number_format($transaction->total_price, 0, ',', '.') }}</td>
+              <td style="text-align: right !important;">Rp. {{ number_format($transaction->paymentHeader->payment_status === 'Lunas' ? $transaction->paymentHeader->total_payment : (!empty($transaction->paymentHeader->payment_method) && $transaction->paymentHeader->payment_method !== 'Bayar Nanti' ? ($transaction->paymentHeader->latestPaymentDetail->invoiceHeader->total_amount ?? 0) : 0), 0, ',', '.') }}</td>
           </tr>
         @endforeach
         <tr>
-          <th colspan="3" style="text-align: right !important;">Total :</th>
+          <th colspan="6" style="text-align: right !important;">Total :</th>
           @php
               $totalPrice = 0;
               $totalKgVol = 0;
               $totalColly = 0;
+              $totalAmount = 0;
           @endphp
           @foreach ($shipmentsReports as $transaction)
               @php
                   $totalColly += $transaction->shipmentItems->count();
                   $totalKgVol += $transaction->total_vol_weight;
                   $totalPrice += $transaction->paymentHeader->total_payment;
+                  $totalAmount += $transaction->paymentHeader->payment_status === 'Lunas' ? $transaction->paymentHeader->total_payment : ($transaction->paymentHeader->payment_method !== 'Bayar Nanti' ? ($transaction->paymentHeader->latestPaymentDetail->invoiceHeader->total_amount ?? 0) : 0);
               @endphp
           @endforeach
           <th style="text-align: right !important;">{{ $totalColly }}</th>
           <th style="text-align: right !important;">{{ $totalKgVol }} m<sup>3</sup></th>
-          <th colspan="2" style="text-align: right !important;">Rp. {{ number_format($totalPrice, 0, ',', '.') }}</th>
+          <th style="text-align: right !important;">Rp. {{ number_format($totalPrice, 0, ',', '.') }}</th>
+          <th style="text-align: right !important;">Rp. {{ number_format($totalAmount, 0, ',', '.') }}</th>
         </tr>
       </tbody>
     </table>

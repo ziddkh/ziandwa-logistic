@@ -44,7 +44,7 @@ class PaymentController extends Controller
     public function show($uuid)
     {
         $title = 'Detail Pembayaran';
-        $payment = $this->paymentHeader->with('shipmentHeader', 'paymentDetails.invoiceHeader')
+        $payment = $this->paymentHeader->with('shipmentHeader', 'paymentDetails.invoiceHeader', 'paymentAdditionals')
             ->where('uuid', $uuid)
             ->whereHas('shipmentHeader.shipmentItems')
             ->firstOrFail();
@@ -56,9 +56,11 @@ class PaymentController extends Controller
     {
         DB::beginTransaction();
         $payment = $this->paymentHeader->where('uuid', $request->uuid)->firstOrFail();
-        $payment->update([
-            'payment_method' => $request->payment_method,
-        ]);
+        $payment->payment_method = $request->payment_method;
+        if (strtolower($request->payment_method) == 'dp') {
+          $payment->payment_status = "Belum Lunas";
+        }
+        $payment->save();
         $payment->refresh();
         $invoiceHeader = $this->invoiceHeader->create([
             'invoice_number' => $this->invoiceService->generateInvoiceNumber(),
@@ -78,7 +80,7 @@ class PaymentController extends Controller
         ]);
         DB::commit();
 
-        return 'success';
+        return back();
     }
 
     public function confirmationPayment(Request $request, $uuid)

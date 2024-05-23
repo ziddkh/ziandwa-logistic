@@ -94,8 +94,8 @@
                               @php
                                 $totalVolWeight = 0;
                                 $totalColly = $invoiceHeader->invoiceItems->count();
-                                $indexBale = 0;
-                                $indexVehicle = 0;
+                                $indexBale = 1;
+                                $indexVehicle = 1;
                               @endphp
                               @foreach ($invoiceHeader->invoiceItems as $item)
                                 @if ($item->type === 'bale')
