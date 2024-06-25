@@ -31,6 +31,7 @@
                             <p class="mb-1">Tujuan : <span>{{ $shipment->destination->name }}</span></p>
                             <p class="mb-1">Nomor Telepon : <span>{{ $shipment->recipient_phone ?? '-' }}</span></p>
                             <p class="mb-1">Alamat : <span>{{ $shipment->recipient_address ?? '-' }}</span></p>
+                            <p class="mb-1">Kapal : <span>{{ $shipment->shipmentItems[0]->ship_name ?? '-' }}</span></p>
                             <p class="mb-1">Pelabuhan : <span>{{ $shipment->harbor_name ?? '-' }}</span></p>
                             <p class="mb-1">Tanggal Pengiriman : <span>{{ Carbon\Carbon::parse($shipment->departure_date)->translatedFormat('l, j F Y') ?? '-' }}</span></p>
                             <p>Estimasi : <span>{{ Carbon\Carbon::parse($shipment->expected_arrival_date)->translatedFormat('l, j F Y') ?? '-' }}</span></p>

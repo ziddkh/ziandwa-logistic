@@ -55,6 +55,10 @@
                             <td class="py-1 text-dark">: {{ $payment->shipmentHeader->recipient_address }}</td>
                         </tr>
                         <tr>
+                            <td class="py-1 fw-bold text-dark" style="min-width: 160px;">Nama Kapal</td>
+                            <td class="py-1 text-dark">: {{ $payment->shipmentHeader->shipmentItems[0]->ship_name ?? '-' }}</td>
+                        </tr>
+                        <tr>
                             <td class="py-1 fw-bold text-dark" style="min-width: 160px;">Tanggal Kirim</td>
                             <td class="py-1 text-dark">: {{ Carbon\Carbon::parse($payment->shipmentHeader->departure_date)->translatedFormat('l, j F Y') }}</td>
                         </tr>
@@ -70,9 +74,8 @@
                                 <table class="table table-bordered bg-white mb-0">
                                     <thead>
                                         <tr>
-                                            <th class="rounded-0 fw-bold">Nama Kapal</th>
                                             <th class="rounded-0 fw-bold text-center">Kg Vol</th>
-                                            <th class="rounded-0 fw-bold text-center">Harga/Kg</th>
+                                            <th class="rounded-0 fw-bold text-center">Harga/M3</th>
                                             <th class="rounded-0 fw-bold">Total</th>
                                         </tr>
                                     </thead>
@@ -80,7 +83,6 @@
                                             @foreach ($payment->shipmentHeader->shipmentItems as $item)
                                                 @if ($item->type === 'bale')
                                                     <tr>
-                                                        <td>{{ $item->ship_name }}</td>
                                                         <td class="text-center">{{ $item->vol_weight }}</td>
                                                         <td class="text-center">Rp. {{ number_format($payment->shipmentHeader->destination_cost, 0, ',', '.') }}</td>
                                                         <td>Rp. {{ number_format($item->price, 0, ',', '.') }}</td>
@@ -96,7 +98,6 @@
                                 <table class="table table-bordered bg-white mb-0">
                                     <thead>
                                         <tr>
-                                            <th class="rounded-0 fw-bold">Nama Kapal</th>
                                             <th class="rounded-0 fw-bold text-center">Deskripsi</th>
                                             <th class="rounded-0 fw-bold text-center">Harga</th>
                                         </tr>
@@ -105,7 +106,6 @@
                                             @foreach ($payment->shipmentHeader->shipmentItems as $item)
                                                 @if ($item->type === 'vehicle')
                                                     <tr>
-                                                        <td>{{ $item->ship_name }}</td>
                                                         <td class="text-center">{{ $item->description }}</td>
                                                         <td>Rp. {{ number_format($item->price, 0, ',', '.') }}</td>
                                                     </tr>

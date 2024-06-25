@@ -46,6 +46,14 @@
                             <p class="inv-list-number mt-sm-3 pb-sm-2 mt-4"><span class="inv-title">Invoice : </span>
                               <span class="inv-number">{{ $invoiceHeader->invoice_number }}</span>
                             </p>
+                            @switch($invoiceHeader->paymentDetail->payment_status)
+                              @case("Pending")
+                                <p class="badge badge-light-danger">Belum Dibayar</p>
+                                @break
+                              @case("Sudah Dibayar")
+                                <p class="badge badge-light-success">Sudah Dibayar</p>
+                                @break
+                            @endswitch
                             <p class="inv-created-date mt-sm-5 mt-3"><span class="inv-title">Tanggal Terbit : </span>
                               <span class="inv-date">{{ $invoiceHeader->created_at_formatted }}</span>
                             </p>
@@ -240,22 +248,16 @@
                           </div>
                         </div>
                         <div class="row">
-                          <div class="col-6"></div>
-                          <div class="col-6">
-                            <div class="d-flex justify-content-center">
-                              <div class="d-flex flex-column">
-                                <p class="text-center" class="mb-5">Hormat Kami</p>
-                                <p class="text-center mt-5">Hatlon 39 Cargo</p>
-                              </div>
-                            </div>
+                          <div class="col-12">
+                            <p>Ini adalah <i>Invoice</i> yang dihasilkan oleh sistem. Tidak diperlukan tanda tangan.</p>
                           </div>
                         </div>
                       </div>
                       <div class="inv--note">
                         <div class="row mt-4">
                           <div class="col-sm-12 col-12 order-sm-0 order-1">
-                            <p>*Mohon sertakan bukti transfer.</p>
-                            <p>*Apabila nota ini tidak disanggah sejak penyerahan, nota ini dianggap benar.</p>
+                            <p class="fw-normal">*Mohon sertakan bukti transfer.</p>
+                            <p class="fw-normal">*Apabila nota ini tidak disanggah sejak penyerahan, nota ini dianggap benar.</p>
                           </div>
                         </div>
                       </div>

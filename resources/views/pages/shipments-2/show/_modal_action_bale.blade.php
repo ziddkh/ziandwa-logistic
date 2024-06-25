@@ -13,7 +13,7 @@
                 <div class="modal-body">
                     <div class="form-group mb-3">
                         <label for="ship-name">Kapal</label>
-                        <input type="text" id="ship-name" name="ship_name" class="form-control form-control-sm" placeholder="Nama Kapal">
+                        <input type="text" id="ship-name" name="ship_name" class="form-control form-control-sm" placeholder="Nama Kapal" value="{{ $shipment->shipmentItems[0]->ship_name ?? '' }}" @if(!empty($shipment->shipmentItems[0]->ship_name)) readonly @endif>
                         <span class="invalid-feedback"></span>
                     </div>
                     <div class="form-group mb-3">

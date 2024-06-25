@@ -17,7 +17,6 @@ tableBales.on('click', '.btn-edit', async function (e) {
     await getTransactionDetail(uuid)
         .then(shipment_item => {
             actionBaleModal.find('#action-bale-modal-label').text('Edit Bal')
-            actionBaleModal.find('#ship-name').val(shipment_item.ship_name)
             actionBaleModal.find('#departure-date').val(shipment_item.departure_date)
             actionBaleModal.find('#length').val(parseFloat(shipment_item.length))
             actionBaleModal.find('#width').val(parseFloat(shipment_item.width))
@@ -39,7 +38,6 @@ tableVehicles.on('click', '.btn-edit', async function (e) {
     await getTransactionDetail(uuid)
         .then(shipment_item => {
             actionVehicleModal.find('#action-vehicle-modal-label').text('Edit Kendaraan')
-            actionVehicleModal.find('#ship-name').val(shipment_item.ship_name)
             actionVehicleModal.find('#description').val(shipment_item.description)
             actionVehicleModal.find('#price').val(shipment_item.price)
             actionVehicleForm.attr('action', `${apiUrl}/shipment-items/${shipment_item.uuid}`)
@@ -166,7 +164,6 @@ function clearActionVehicleModal() {
     actionVehicleForm.attr('action', '')
     actionVehicleModal.find('#transaction-id').val('')
     actionVehicleModal.find('#action-vehicle-modal-label').text('')
-    actionVehicleModal.find('#ship-name').val('')
     actionVehicleModal.find('#description').val('')
     actionVehicleModal.find('#price').val('')
     if (actionVehicleForm.find('input[name="_method"]').length) {
@@ -182,7 +179,6 @@ function clearActionBaleModal() {
     actionBaleForm.attr('action', '')
     actionBaleModal.find('#transaction-id').val('')
     actionBaleModal.find('#action-bale-modal-label').text('')
-    actionBaleModal.find('#ship-name').val('')
     actionBaleModal.find('#length').val('')
     actionBaleModal.find('#width').val('')
     actionBaleModal.find('#height').val('')
