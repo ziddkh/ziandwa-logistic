@@ -7,6 +7,7 @@ use App\Http\Controllers\Report\ShipmentClientReportController;
 use App\Http\Controllers\Report\ShipmentReportController;
 use App\Http\Controllers\Shipment\ShipmentArchiveController;
 use App\Http\Controllers\Shipment\ShipmentController;
+use App\Http\Controllers\Shipper\ShipperController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,15 @@ Route::middleware('auth')->group(function () {
             Route::controller(ShipmentArchiveController::class)->name('shipments-2.')->group(function () {
                 Route::get('arsip', 'index')->middleware('can:view-shipment')->name('archive');
             });
+        });
+
+        Route::prefix('shipper')->controller(ShipperController::class)->name('shipper.')->group(function () {
+          Route::get('list', 'index')->middleware('can:view-shipper')->name('index');
+          Route::get('tambah', 'create')->middleware('can:create-shipper')->name('create');
+          Route::get('{uuid}/detail', 'show')->middleware('can:show-shipper')->name('show');
+          Route::post('store', 'store')->middleware('can:store-shipper')->name('store');
+          Route::put('{uuid}', 'update')->middleware('can:edit-shipper')->name('update');
+          Route::delete('{uuid}', 'destroy')->middleware('can:delete-shipper')->name('destroy');
         });
 
         Route::prefix('pembayaran')->group(function () {

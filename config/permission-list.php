@@ -8,6 +8,14 @@ return [
     'edit-shipment',
     'delete-shipment',
 
+    // Shipper
+    'view-shipper',
+    'create-shipper',
+    'store-shipper',
+    'show-shipper',
+    'edit-shipper',
+    'delete-shipper',
+
     // Payment
     'view-payment',
     'show-payment',
