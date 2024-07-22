@@ -34,6 +34,10 @@
                                     <label for="departure-date-search" class="form-label">Tanggal Pengiriman</label>
                                     <input type="date" id="departure-date-search" class="form-control form-control-sm" value="{{ $request['departure_date'] ?? '' }}" name="departure_date">
                                 </div>
+                                <div class="form-group">
+                                    <label for="recipient-address-search" class="form-label">Alamat</label>
+                                    <input type="text" id="recipient-address-search" class="form-control form-control-sm" value="{{ $request['recipient_address'] ?? '' }}" name="recipient_address">
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary w-full d-block">Cari</button>
                         </form>

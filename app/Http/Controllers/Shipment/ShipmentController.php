@@ -37,6 +37,14 @@ class ShipmentController extends Controller
             $shipments = $shipments->whereDate("departure_date", $request->departure_date);
         }
 
+        if ($request->filled('recipient_address')) {
+            $recipientAddress = $request->recipient_address;
+            $shipments = $shipments->where(function ($query) use ($recipientAddress) {
+                $query->whereRaw('LOWER(recipient_address) LIKE ?', ['%'.strtolower($recipientAddress).'%'])
+                    ->orWhereRaw('UPPER(recipient_address) LIKE ?', ['%'.strtoupper($recipientAddress).'%']);
+            });
+        }
+
         $shipments = $shipments->latest('created_at')->get();
 
         return view('pages.shipments-2.index', [
