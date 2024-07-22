@@ -25,13 +25,13 @@
                             <div class="col">
                                 <div class="form-group mb-0">
                                     <label for="departure-date">Tanggal Pengiriman</label>
-                                    <input type="date" class="form-control form-control-sm" id="departure-date" name="departure_date" value="{{ old('departure_date') }}">
+                                    <input type="date" class="form-control form-control-sm" id="departure-date" name="departure_date" value="{{ $request['departure_date'] ?? '' }}">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group mb-0">
                                     <label for="recipient-address">Alamat</label>
-                                    <input type="search" class="form-control form-control-sm" id="recipient-address" name="recipient_address" value="{{ old('recipient_address') }}">
+                                    <input type="search" class="form-control form-control-sm" id="recipient-address" name="recipient_address" value="{{ $request['recipient_address'] ?? '' }}">
                                 </div>
                             </div>
                         </div>

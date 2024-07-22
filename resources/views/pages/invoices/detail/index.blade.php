@@ -83,77 +83,75 @@
 
                       </div>
                       <div class="inv--product-table-section">
-                        <div class="table-responsive mb-3">
-                          <table class="table">
-                            <thead class="">
-                              <tr>
-                                <th scope="col" class="text-center">No.</th>
-                                <th scope="col" class="text-start" style="width: 200px; min-width: 200px;">Nama Kapal
-                                </th>
-                                <th scope="col" class="text-center">Panjang</th>
-                                <th scope="col" class="text-center">Lebar</th>
-                                <th scope="col" class="text-center">Tinggi</th>
-                                <th scope="col" class="text-center">M3</th>
-                                <th scope="col" class="text-center" style="width: 220px; min-width: 220px;">Total
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              @php
-                                $totalVolWeight = 0;
-                                $totalColly = $invoiceHeader->invoiceItems->count();
-                                $indexBale = 1;
-                                $indexVehicle = 1;
-                              @endphp
-                              @foreach ($invoiceHeader->invoiceItems as $item)
-                                @if ($item->type === 'bale')
-                                  @php
-                                    $totalVolWeight += $item->vol_weight;
-                                  @endphp
-                                  <tr>
-                                    <td class="text-center">{{ $indexBale++ }}</td>
-                                    <td class="text-start" style="width: 200px; min-width: 200px;">
-                                      {{ $item->ship_name }}</td>
-                                    <td class="text-center">{{ $item->length }}</td>
-                                    <td class="text-center">{{ $item->width }}</td>
-                                    <td class="text-center">{{ $item->height }}</td>
-                                    <td class="text-center">{{ $item->vol_weight }}</td>
-                                    <td class="text-center" style="width: 220px; min-width: 220px;">Rp.
-                                      {{ number_format($item->price, 0, ',', '.') }}</td>
-                                  </tr>
-                                @endif
-                              @endforeach
-                            </tbody>
-                          </table>
-                        </div>
-                        <div class="table-responsive">
-                          <table class="table">
-                            <thead class="">
-                              <tr>
-                                <th scope="col" class="text-center">No.</th>
-                                <th scope="col" class="text-start" style="width: 200px; min-width: 200px;">Nama Kapal
-                                </th>
-                                <th scope="col" class="text-start">Deskripsi</th>
-                                <th scope="col" class="text-center" style="width: 220px; min-width: 220px;">Total
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              @foreach ($invoiceHeader->invoiceItems as $item)
-                                @if ($item->type === 'vehicle')
-                                  <tr>
-                                    <td class="text-center">{{ $indexVehicle }}</td>
-                                    <td class="text-start" style="width: 200px; min-width: 200px;">
-                                      {{ $item->ship_name }}</td>
-                                    <td class="text-start">{{ $item->description }}</td>
-                                    <td class="text-center" style="width: 220px; min-width: 220px;">Rp.
-                                      {{ number_format($item->price, 0, ',', '.') }}</td>
-                                  </tr>
-                                @endif
-                              @endforeach
-                            </tbody>
-                          </table>
-                        </div>
+                        @php
+                            $totalVolWeight = 0;
+                            $totalColly = $invoiceHeader->invoiceItems->count();
+                        @endphp
+                        @if (count($invoiceHeader->baleItems) > 0)
+                            <div class="table-responsive mb-3">
+                            <table class="table">
+                                <thead class="">
+                                <tr>
+                                    <th scope="col" class="text-center">No.</th>
+                                    <th scope="col" class="text-start" style="width: 200px; min-width: 200px;">Nama Kapal
+                                    </th>
+                                    <th scope="col" class="text-center">Panjang</th>
+                                    <th scope="col" class="text-center">Lebar</th>
+                                    <th scope="col" class="text-center">Tinggi</th>
+                                    <th scope="col" class="text-center">M3</th>
+                                    <th scope="col" class="text-center" style="width: 220px; min-width: 220px;">Total
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($invoiceHeader->baleItems as $item)
+                                    @php
+                                        $totalVolWeight += $item->vol_weight;
+                                    @endphp
+                                    <tr>
+                                        <td class="text-center">{{ $loop->iteration }}</td>
+                                        <td class="text-start" style="width: 200px; min-width: 200px;">
+                                        {{ $item->ship_name }}</td>
+                                        <td class="text-center">{{ $item->length }}</td>
+                                        <td class="text-center">{{ $item->width }}</td>
+                                        <td class="text-center">{{ $item->height }}</td>
+                                        <td class="text-center">{{ $item->vol_weight }}</td>
+                                        <td class="text-center" style="width: 220px; min-width: 220px;">Rp.
+                                        {{ number_format($item->price, 0, ',', '.') }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            </div>
+                        @endif
+                        @if (count($invoiceHeader->vehicleItems) > 0)
+                            <div class="table-responsive">
+                            <table class="table">
+                                <thead class="">
+                                <tr>
+                                    <th scope="col" class="text-center">No.</th>
+                                    <th scope="col" class="text-start" style="width: 200px; min-width: 200px;">Nama Kapal
+                                    </th>
+                                    <th scope="col" class="text-start">Deskripsi</th>
+                                    <th scope="col" class="text-center" style="width: 220px; min-width: 220px;">Total
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($invoiceHeader->vehicleItems as $item)
+                                    <tr>
+                                        <td class="text-center">{{ $loop->iteration }}</td>
+                                        <td class="text-start" style="width: 200px; min-width: 200px;">
+                                        {{ $item->ship_name }}</td>
+                                        <td class="text-start">{{ $item->description }}</td>
+                                        <td class="text-center" style="width: 220px; min-width: 220px;">Rp.
+                                        {{ number_format($item->price, 0, ',', '.') }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            </div>
+                        @endif
                       </div>
                       <div class="inv--total-amounts">
                         <div class="row mt-4" style="margin-bottom: 60px">
@@ -164,7 +162,6 @@
                                   <div class="mb-2">Transfer Rekening :</div>
                                   <p class="mb-1">Doby Mursid</p>
                                   <p class="">BNI : 1846309145</p>
-
                                 </div>
                               </div>
                             </div>

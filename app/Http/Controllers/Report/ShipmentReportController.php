@@ -43,6 +43,10 @@ class ShipmentReportController extends Controller
 
         $shipmentsReports = $shipmentsReports->get();
 
-        return view('pages.reports.shipment-reports.index', compact('title', 'shipmentsReports'));
+        return view('pages.reports.shipment-reports.index', [
+            'title' => $title,
+            'shipmentsReports' => $shipmentsReports,
+            'request' => $request->all()
+        ]);
     }
 }

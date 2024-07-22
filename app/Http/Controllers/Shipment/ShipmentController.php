@@ -8,6 +8,7 @@ use App\Models\Shipment\ShipmentHeader;
 use App\Services\Payment\PaymentHeaderService;
 use App\Services\Shipment\ShipmentService;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ShipmentController extends Controller
@@ -22,15 +23,27 @@ class ShipmentController extends Controller
         $this->paymentHeaderService = $paymentHeaderService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $title = 'List Pengiriman';
-        $shipments = ShipmentHeader::with(['shipmentItems', 'paymentHeader.paymentDetails'])
+        $shipments = ShipmentHeader::with(['shipmentItems', 'paymentHeader.paymentDetails']);
             // ->where('departure_date', '>=', Carbon::today()->format('Y-m-d'))
-            ->latest('created_at')
-            ->get();
 
-        return view('pages.shipments-2.index', compact('title', 'shipments'));
+        if ($request->filled('name')) {
+            $shipments = $shipments->where("recipient_name", "LIKE", "%$request->name%");
+        }
+
+        if ($request->filled('departure_date')) {
+            $shipments = $shipments->whereDate("departure_date", $request->departure_date);
+        }
+
+        $shipments = $shipments->latest('created_at')->get();
+
+        return view('pages.shipments-2.index', [
+            'title' => $title,
+            'shipments' => $shipments,
+            'request' => $request->all()
+        ]);
     }
 
     public function create()

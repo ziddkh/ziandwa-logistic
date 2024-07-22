@@ -21,4 +21,14 @@ class InvoiceItem extends Model
         'price',
         'description',
     ];
+
+    public function scopeBales($query)
+    {
+        return $query->where('type', 'bale');
+    }
+
+    public function scopeVehicles($query)
+    {
+        return $query->where('type', 'vehicle');
+    }
 }

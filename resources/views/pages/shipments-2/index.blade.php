@@ -23,6 +23,21 @@
                     <div>
                         <a href="{{ route('shipments-2.create') }}" class="btn btn-sm btn-primary mb-4">Tambah Pengiriman</a>
                     </div>
+                    <div class="mb-4">
+                        <form action="{{ route('shipments-2.index') }}" method="GET">
+                            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3 mb-3">
+                                <div class="form-group">
+                                    <label for="name-search" class="form-label">Nama</label>
+                                    <input type="text" id="name-search" class="form-control form-control-sm" value="{{ $request['name'] ?? '' }}" name="name" placeholder="Cari Nama...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="departure-date-search" class="form-label">Tanggal Pengiriman</label>
+                                    <input type="date" id="departure-date-search" class="form-control form-control-sm" value="{{ $request['departure_date'] ?? '' }}" name="departure_date">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-full d-block">Cari</button>
+                        </form>
+                    </div>
                     <div id="shipments-table" class="table-responsive">
                         <table class="table table-bordered mb-0">
                             <thead>
