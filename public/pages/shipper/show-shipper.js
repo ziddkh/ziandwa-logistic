@@ -32,15 +32,17 @@ formAddPayment.on('submit', async function (e) {
     e.preventDefault();
     const formData = new FormData(this)
     const url = $(this).attr('action')
-    try {
-        await axios.post(url, formData)
-    } catch (error) {
-        console.log(error)
-        if (error.response.status === 422) {
-            const errors = error.response.data.errors
-            displayErrors(formAddPayment, errors)
-        }
-    }
+    await axios.post(url, formData)
+        .then((response) => {
+            window.location.reload()
+        })
+        .catch(error => {
+            console.log(error)
+            if (error.response.status === 422) {
+                const errors = error.response.data.errors
+                displayErrors(formAddPayment, errors)
+            }
+        })
 
 })
 
