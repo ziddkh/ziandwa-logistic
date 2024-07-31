@@ -207,11 +207,6 @@
       <div>
         <table border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td class="no-border" style="padding: 4px !important;">Total Colly</td>
-            <td class="no-border" style="padding: 4px !important;">:
-              {{ $invoice->total_colly, 3, ',', '.' }}</td>
-          </tr>
-          <tr>
             <td class="no-border" style="padding: 4px !important;">Total M3</td>
             <td class="no-border" style="padding: 4px !important;">:
               {{ $invoice->total_vol_weight , 3, ',', '.' }}</td>
