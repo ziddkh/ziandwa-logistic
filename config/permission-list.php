@@ -16,6 +16,15 @@ return [
     'edit-shipper',
     'delete-shipper',
 
+    // Shipper Payment
+    'view-shipper-payment',
+    'create-shipper-payment',
+    'store-shipper-payment',
+    'approve-shipper-payment',
+
+    // Shipper Invoice
+    'view-shipper-invoice',
+
     // Payment
     'view-payment',
     'show-payment',

@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\Report\ExportShipmentClientReportController;
 use App\Http\Controllers\Api\Report\ExportShipmentReportController;
 use App\Http\Controllers\Api\Shipment\ShipmentHeaderController;
 use App\Http\Controllers\Api\Shipment\ShipmentItemController;
+use App\Http\Controllers\Api\ShipperPaymentController;
 use App\Http\Controllers\DestinationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,4 +37,6 @@ Route::name('api.')->group(function () {
             Route::get('shipment-clients', ExportShipmentClientReportController::class)->name('shipment-clients');
         });
     });
+
+    Route::post('shipper-payment/create', [ShipperPaymentController::class, 'store'])->name('shipper-payment.store');
 });

@@ -52,4 +52,11 @@ class Shipper extends Model
     {
       return $this->hasMany(ShipperItem::class, 'shipper_id');
     }
+
+    public function payments(): HasMany
+    {
+        return $this->hasMany(
+            related: ShipperPayment::class
+        );
+    }
 }

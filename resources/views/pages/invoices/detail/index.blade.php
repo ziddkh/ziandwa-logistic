@@ -161,7 +161,9 @@
                                 <div class="col-12">
                                   <div class="mb-2">Transfer Rekening :</div>
                                   <p class="mb-1">Doby Mursid</p>
-                                  <p class="">BNI : 1846309145</p>
+                                  <p class="mb-2">BNI : 1846309145</p>
+                                  <p class="mb-1">Khairuddin Ade</p>
+                                  <p class="">BCA : 0280226190</p>
                                 </div>
                               </div>
                             </div>

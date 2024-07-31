@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Shipper;
 
+use App\Enums\ShipperPaymentMethod;
+use App\Enums\ShipperPaymentMethodEnums;
 use App\Enums\ShipperStatusEnums;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Shipper\StoreRequest;
 use App\Models\Destination;
 use App\Models\Shipment\TypeOfShipment;
 use App\Models\Shipper;
+use App\Models\ShipperInvoice;
 use App\Services\Shipper\ShipperService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -28,8 +31,9 @@ class ShipperController extends Controller
     {
         $title = "List Shipper";
         $data = $this->model
-          ->latest()
-          ->get();
+            ->with('payments')
+            ->latest()
+            ->get();
 
         return view('pages.shipper.index', [
           'title' => $title,
@@ -121,12 +125,15 @@ class ShipperController extends Controller
     {
         $title = "Detail Shipper";
         $data = $this->model
-          ->with('items')
+          ->with('items', 'payments.invoice')
           ->where('uuid', $shipper)
           ->firstOrFail();
+
+        $paymentMethods = ShipperPaymentMethodEnums::cases();
         return view('pages.shipper.show', [
           'title' => $title,
-          'shipper' => $data
+          'shipper' => $data,
+          'paymentMethods' => $paymentMethods,
         ]);
     }
 
@@ -160,5 +167,12 @@ class ShipperController extends Controller
           ->delete();
 
         return redirect()->route('shipper.index')->with('success', 'Shipper berhasil di-hapus');
+    }
+
+    public function showInvoice($uuid, $invoiceNumber) {
+        $invoiceNumberFormatted = str_replace('-', '/', $invoiceNumber);
+        $title = "Shipper Invoice";
+        $invoice = ShipperInvoice::with(['payment', 'items'])->where('document_number', $invoiceNumberFormatted)->firstOrFail();
+        return view('pages.shipper.invoice', compact('invoice', 'title'));
     }
 }
