@@ -191,7 +191,7 @@
             <td>{{ $item->recipient_name ?? '-' }}</td>
             <td>{{ $item->colly }}</td>
             <td>{{ $item->vol_weight }} m3</td>
-            <td>{{ number_format($item->price, 0, ',', '.') }}</td>
+            <td>Rp. {{ number_format($item->price, 0, ',', '.') }}</td>
           </tr>
         @endforeach
       </tbody>
@@ -199,10 +199,10 @@
     <div style="width: 100% !important; display: flex !important; justify-content: space-between !important; margin-bottom: 24px;">
       <div>
         <p><strong>Transfer Rekening</strong></p>
-        <p>Fadli Mursid</p>
-        <p>BNI : 1846309145</p>
         <p>Khairuddin Ade</p>
         <p>BCA : 0280226190</p>
+        <p>Doby Mursid</p>
+        <p>BNI : 1846309145</p>
       </div>
       <div>
         <table border="0" cellspacing="0" cellpadding="0">
