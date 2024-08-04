@@ -174,7 +174,7 @@
                                                     <input id="identifier" type="hidden" value="{{ $payment->id }}">
                                                 </td>
                                                 <td>{{ $payment->payment_method }}</td>
-                                                <td>{{ $payment->payment_status }} m<sup>3</sup></td>
+                                                <td>{{ $payment->payment_status }}</td>
                                                 <td>Rp. {{ number_format($payment->payment_amount, 0, ',', '.') }}</td>
                                                 <td>Rp. {{ number_format($payment->remaining_payment_amount, 0, ',', '.') }}</td>
                                                 <td>

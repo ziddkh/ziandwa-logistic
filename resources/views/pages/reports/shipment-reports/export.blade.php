@@ -185,17 +185,21 @@
               $totalAmount = 0;
           @endphp
           @foreach ($shipmentsReports as $transaction)
-              @php
-                  $totalColly += $transaction->shipmentItems->count();
-                  $totalKgVol += $transaction->total_vol_weight;
-                  $totalPrice += $transaction->paymentHeader->total_payment;
-                  $totalAmount += $transaction->paymentHeader->payment_status === 'Lunas' ? $transaction->paymentHeader->total_payment : ($transaction->paymentHeader->payment_method !== 'Bayar Nanti' ? ($transaction->paymentHeader->latestPaymentDetail->invoiceHeader->total_amount ?? 0) : 0);
-              @endphp
+            @php
+                $totalColly += $transaction->shipmentItems->count();
+                $totalKgVol += $transaction->total_vol_weight;
+                $totalPrice += $transaction->paymentHeader->total_payment;
+                $totalAmount += $transaction->paymentHeader->payment_status === 'Lunas' ? $transaction->paymentHeader->total_payment : ($transaction->paymentHeader->payment_method !== 'Bayar Nanti' ? ($transaction->paymentHeader->latestPaymentDetail->invoiceHeader->total_amount ?? 0) : 0);
+            @endphp
           @endforeach
+          @php
+              $remainingAmount = (int)$totalPrice - (int)$totaAmount;
+          @endphp
           <th style="text-align: right !important;">{{ $totalColly }}</th>
           <th style="text-align: right !important;">{{ $totalKgVol }} m<sup>3</sup></th>
           <th style="text-align: right !important;">Rp. {{ number_format($totalPrice, 0, ',', '.') }}</th>
           <th style="text-align: right !important;">Rp. {{ number_format($totalAmount, 0, ',', '.') }}</th>
+          <th style="text-align: right !important;">Rp. {{ number_format($remainingAmount, 0, ',', '.') }}</th>
         </tr>
       </tbody>
     </table>
