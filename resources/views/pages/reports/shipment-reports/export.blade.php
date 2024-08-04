@@ -164,6 +164,10 @@
       </thead>
       <tbody>
         @foreach ($shipmentsReports as $transaction)
+            @php
+                $totalAmount = $transaction->paymentHeader->payment_status === 'Lunas' ? $transaction->paymentHeader->total_payment : (!empty($transaction->paymentHeader->payment_method) && $transaction->paymentHeader->payment_method !== 'Bayar Nanti' ? ($transaction->paymentHeader->latestPaymentDetail->invoiceHeader->total_amount ?? 0) : 0);
+                $remainingAmount = int($transaction->total_price) - (int)$totalAmount;
+            @endphp
           <tr>
               <td style="text-align: center !important;">{{ $loop->iteration }}</td>
               <td>{{ $transaction->recipient_name }}</td>
@@ -175,6 +179,7 @@
               <td style="text-align: right !important;">{{ $transaction->total_vol_weight }} m<sup>3</sup></td>
               <td style="text-align: right !important;">Rp. {{ number_format($transaction->total_price, 0, ',', '.') }}</td>
               <td style="text-align: right !important;">Rp. {{ number_format($transaction->paymentHeader->payment_status === 'Lunas' ? $transaction->paymentHeader->total_payment : (!empty($transaction->paymentHeader->payment_method) && $transaction->paymentHeader->payment_method !== 'Bayar Nanti' ? ($transaction->paymentHeader->latestPaymentDetail->invoiceHeader->total_amount ?? 0) : 0), 0, ',', '.') }}</td>
+              <td style="text-align: right !important;">Rp. {{ number_format($remainingAmount, 0, ',', '.') }}</td>
           </tr>
         @endforeach
         <tr>
