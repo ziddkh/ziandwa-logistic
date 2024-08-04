@@ -193,7 +193,7 @@
             @endphp
           @endforeach
           @php
-              $remainingAmount = (int)$totalPrice - (int)$totaAmount;
+              $remainingAmount = (int)$totalPrice - (int)$totalAmount;
           @endphp
           <th style="text-align: right !important;">{{ $totalColly }}</th>
           <th style="text-align: right !important;">{{ $totalKgVol }} m<sup>3</sup></th>
