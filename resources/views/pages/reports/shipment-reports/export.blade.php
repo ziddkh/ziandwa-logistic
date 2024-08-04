@@ -159,6 +159,7 @@
           <th>Kg Vol</th>
           <th>Total</th>
           <th>Total Bayar</th>
+          <th>Sisa Bayar</th>
       </tr>
       </thead>
       <tbody>
