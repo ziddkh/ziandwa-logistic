@@ -166,7 +166,7 @@
         @foreach ($shipmentsReports as $transaction)
             @php
                 $totalAmount = $transaction->paymentHeader->payment_status === 'Lunas' ? $transaction->paymentHeader->total_payment : (!empty($transaction->paymentHeader->payment_method) && $transaction->paymentHeader->payment_method !== 'Bayar Nanti' ? ($transaction->paymentHeader->latestPaymentDetail->invoiceHeader->total_amount ?? 0) : 0);
-                $remainingAmount = int($transaction->total_price) - (int)$totalAmount;
+                $remainingAmount = (int)$transaction->total_price - (int)$totalAmount;
             @endphp
           <tr>
               <td style="text-align: center !important;">{{ $loop->iteration }}</td>
