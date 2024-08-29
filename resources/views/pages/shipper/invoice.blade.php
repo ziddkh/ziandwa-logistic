@@ -201,20 +201,20 @@
         <p><strong>Transfer Rekening</strong></p>
         <p>Khairuddin Ade</p>
         <p>BCA : 0280226190</p>
-        <p>Doby Mursid</p>
-        <p>BNI : 1846309145</p>
+        {{-- <p>Doby Mursid</p>
+        <p>BNI : 1846309145</p> --}}
       </div>
       <div>
         <table border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td class="no-border" style="padding: 4px !important;">Total M3</td>
             <td class="no-border" style="padding: 4px !important;">:
-              {{ $invoice->total_vol_weight , 3, ',', '.' }}</td>
+              {{ number_format($invoice->total_vol_weight, 3, ',', '.') }}</td>
           </tr>
           <tr>
             <td class="no-border" style="padding: 4px !important;">Total Colly</td>
             <td class="no-border" style="padding: 4px !important;">:
-              {{ $invoice->total_colly, 3, ',', '.' }}</td>
+              {{ number_format($invoice->total_colly, 3, ',', '.') }}</td>
           </tr>
           <tr>
             <td class="no-border" style="padding: 4px !important;">Harga/M3</td>
