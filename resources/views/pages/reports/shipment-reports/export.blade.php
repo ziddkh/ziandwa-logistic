@@ -145,7 +145,7 @@
         <p style="margin: 0px !important;">Kontak: 082319983738 / 082211604145</p>
       </div>
     </div>
-    <h1 style="margin: 0 !important;">Laporan Jumlah Pembayaran</h1>
+    <h1 style="margin: 0 !important;">Laporan Keuangan Pengiriman</h1>
     <table style="margin: 4mm 0 !important;">
       <thead>
         <tr>
