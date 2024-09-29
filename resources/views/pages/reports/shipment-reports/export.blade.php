@@ -171,7 +171,7 @@
           <tr>
               <td style="text-align: center !important;">{{ $loop->iteration }}</td>
               <td>{{ $transaction->recipient_name }}</td>
-              <td>{{ $transaction->harbor_name }}</td>
+              <td>{{ $transaction->recipient_address }}</td>
               <td>{{ $transaction->departure_date }}</td>
               <td style="text-align: left !important;">{{ $transaction->paymentHeader->payment_method ?? '-' }}</sup></td>
               <td>{{ $transaction->paymentHeader->payment_status ?? '-' }}</td>
