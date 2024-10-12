@@ -37,6 +37,15 @@ class ExportShipmentReportController extends Controller
           });
       }
 
+      if ($request->filled('recipient_names')) {
+        $recipientNames = array_map('trim', explode(',', $request->recipient_names));
+        $shipmentsReports = $shipmentsReports->where(function ($query) use ($recipientNames) {
+            foreach ($recipientNames as $name) {
+                $query->orWhereRaw('LOWER(recipient_name) = ?', [strtolower($name)]);
+            }
+        });
+    }
+
       $shipmentsReports = $shipmentsReports->get();
       return view('pages.reports.shipment-reports.export', compact('title', 'shipmentsReports'));
     }

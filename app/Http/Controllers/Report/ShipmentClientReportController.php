@@ -38,7 +38,7 @@ class ShipmentClientReportController extends Controller
             $recipientNames = array_map('trim', explode(',', $request->recipient_names));
             $shipmentsReports = $shipmentsReports->where(function ($query) use ($recipientNames) {
                 foreach ($recipientNames as $name) {
-                    $query->orWhereRaw('LOWER(recipient_name) LIKE ?', ['%'.strtolower($name).'%']);
+                    $query->orWhereRaw('LOWER(recipient_name) = ?', [strtolower($name)]);
                 }
             });
         }
