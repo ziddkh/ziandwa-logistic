@@ -117,7 +117,7 @@ class ShipmentController extends Controller
                 'shipment_header_id' => $shipment->id,
                 'payment_number' => $this->paymentHeaderService->generatePaymentNumber(),
                 'payment_status' => 'Belum Dibayar',
-                'total_payment' => $shipment->shipmentItems->sum('price'),
+                'total_payment' => max($shipment->shipmentItems->sum('price'), $shipment->destination_cost * 0.2),
             ]);
 
             DB::commit();

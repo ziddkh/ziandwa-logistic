@@ -50,7 +50,7 @@ class ShipmentHeaderController extends Controller
                 }
             });
             $shipmentHeader->paymentHeader->update([
-                'total_payment' => $shipmentHeader->shipmentItems->sum('price'),
+                'total_payment' => max($shipmentHeader->shipmentItems->sum('price'), $shipmentHeader->destination_cost * 0.2),
             ]);
             DB::commit();
 
