@@ -30,6 +30,12 @@
                             </div>
                             <div class="col">
                                 <div class="form-group mb-0">
+                                    <label for="recipient-names">Nama</label>
+                                    <input type="search" class="form-control form-control-sm" id="recipient-names" name="recipient_names" value="{{ $request['recipient_names'] ?? '' }}">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-0">
                                     <label for="recipient-address">Alamat</label>
                                     <input type="search" class="form-control form-control-sm" id="recipient-address" name="recipient_address" value="{{ $request['recipient_address'] ?? '' }}">
                                 </div>
