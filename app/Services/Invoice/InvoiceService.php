@@ -19,7 +19,7 @@ class InvoiceService
         $prefix = 'INV';
         $date = date('Ymd');
         $lastSequence = 2022;
-        $lastInvoice = $this->invoiceHeader::where('invoice_number', 'like', $abbreviation.'/'.$prefix.'/'.'%')->latest('invoice_number')->first();
+        $lastInvoice = $this->invoiceHeader::withTrashed()->where('invoice_number', 'like', $abbreviation.'/'.$prefix.'/'.'%')->latest('invoice_number')->first();
         if (! empty($lastInvoice)) {
             $lastSequence = substr($lastInvoice->invoice_number, -4);
         }

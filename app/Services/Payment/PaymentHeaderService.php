@@ -19,7 +19,7 @@ class PaymentHeaderService
         $prefix = 'PAY';
         $date = date('Ymd');
         $lastSequence = 2022;
-        $lastPayment = $this->paymentHeader->where('payment_number', 'like', $abbreviation.'/'.$prefix.'/'.'%')->latest('payment_number')->first();
+        $lastPayment = $this->paymentHeader->withTrashed()->where('payment_number', 'like', $abbreviation.'/'.$prefix.'/'.'%')->latest('payment_number')->first();
         if (! empty($lastPayment)) {
             $lastSequence = substr($lastPayment->payment_number, -4);
         }
