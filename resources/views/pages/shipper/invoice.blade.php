@@ -190,7 +190,7 @@
             <td style="text-align: center !important; width: 32px;">{{ $index + 1 }}</td>
             <td>{{ $item->recipient_name ?? '-' }}</td>
             <td>{{ $item->colly }}</td>
-            <td>{{ number_format($item->vol_weight, 3, ',', '.') }} m3</td>
+            <td>{{ $item->vol_weight }} m3</td>
             <td>Rp. {{ number_format($item->price, 0, ',', '.') }}</td>
           </tr>
         @endforeach
@@ -209,7 +209,7 @@
           <tr>
             <td class="no-border" style="padding: 4px !important;">Total M3</td>
             <td class="no-border" style="padding: 4px !important;">:
-              {{ number_format($invoice->total_vol_weight, 3, ',', '.') }}</td>
+              {{ $invoice->total_vol_weight }}</td>
           </tr>
           <tr>
             <td class="no-border" style="padding: 4px !important;">Total Colly</td>
