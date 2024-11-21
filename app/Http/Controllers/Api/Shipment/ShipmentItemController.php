@@ -54,7 +54,7 @@ class ShipmentItemController extends Controller
                 'total_vol_weight' => $shipment->shipmentItems->sum('vol_weight'),
             ]);
             $shipment->paymentHeader->update([
-                'total_payment' => max($shipment->shipmentItems->sum('price'), $shipment->destination_cost * 0.2),
+                'total_payment' => max($shipment->shipmentItems->sum('price'), $shipment->destination_cost * 0.15),
             ]);
             DB::commit();
 
@@ -108,7 +108,7 @@ class ShipmentItemController extends Controller
                 'total_vol_weight' => $shipment->shipmentItems->sum('vol_weight'),
             ]);
             $shipment->paymentHeader->update([
-                'total_payment' => max($shipment->shipmentItems->sum('price'), $shipment->destination_cost * 0.2),
+                'total_payment' => max($shipment->shipmentItems->sum('price'), $shipment->destination_cost * 0.15),
             ]);
 
             DB::commit();

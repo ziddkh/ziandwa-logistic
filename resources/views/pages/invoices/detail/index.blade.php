@@ -255,7 +255,7 @@
                       <div class="inv--note">
                         <div class="row mt-4">
                           <div class="col-sm-12 col-12 order-sm-0 order-1">
-                            <p class="fw-normal">*Biaya minimum pembayaran adalah 0.2 M3 per pengiriman.</p>
+                            <p class="fw-normal">*Biaya minimum pembayaran adalah 0.15 M3 per pengiriman.</p>
                             <p class="fw-normal">*Mohon sertakan bukti transfer.</p>
                             <p class="fw-normal">*Apabila nota ini tidak disanggah sejak penyerahan, nota ini dianggap benar.</p>
                           </div>
