@@ -32,6 +32,7 @@ class ShipmentHeader extends Model
         'status',
         'remarks',
         'total_vol_weight',
+        'cost_per_kg',
     ];
 
     protected $appends = [

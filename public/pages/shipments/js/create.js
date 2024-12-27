@@ -220,14 +220,26 @@ async function submitForm(formData) {
     setLoading(true)
     try {
         const response = await axios.post(CREATE_SHIPMENT_URL, formData)
-        if (response) {
-            return window.location.href = await response.data.redirect_url
+        try {
+            if (response && response.data && response.data.redirect_url) {
+                // Delay the redirect to ensure the response is fully processed
+                setTimeout(() => {
+                    window.location.href = response.data.redirect_url;
+                }, 100);
+            } else {
+                throw new Error('Invalid response or missing redirect URL');
+            }
+        } catch (error) {
+            console.error(error.message);
+            setLoading(false);
         }
     } catch (error) {
         setLoading(false)
-        if (error.response.status === 422) {
+        if (error.response && error.response.status === 422) {
             const errors = error.response.data.errors
             displayErrors(form, errors)
+        } else {
+            console.error('An error occurred:', error);
         }
     }
 }

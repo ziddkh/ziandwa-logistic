@@ -162,6 +162,39 @@
                         </div>
                     </div>
                 </div>
+                <div class="widget mb-4">
+                    <div class="widget-content widget-content-area">
+                        <div class="d-flex flex-column flex-sm-row justify-content-between mb-4" style="gap: 4px;">
+                            <h5 class="fw-bold truncate">Data Kilogram</h5>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="table-kilograms" class="table table-bordered bg-white mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="rounded-0 fw-bold" style="min-width: 70px !important; width: 70px !important; max-width: 70px !important;">No.</th>
+                                        <th class="rounded-0 fw-bold" style="width: 232px; min-width: 150px;">Panjang</th>
+                                        <th class="rounded-0 fw-bold" style="width: 232px; min-width: 150px;">Lebar</th>
+                                        <th class="rounded-0 fw-bold" style="width: 232px; min-width: 150px;">Tinggi</th>
+                                        <th class="rounded-0 fw-bold" style="width: 232px; min-width: 150px;">Berat(kg)</th>
+                                        <th class="rounded-0 fw-bold" style="min-width: 120px;">Volume</th>
+                                        <th class="rounded-0 fw-bold" style="min-width: 120px;">Total</th>
+                                        <th class="rounded-0 fw-bold text-center" style="width: 80px;">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr id="add-kilogram-button-row">
+                                        <td colspan="7" class="text-center">
+                                            <button type="button" id="add-kilogram-button" class="w-100 btn btn-primary">
+                                                <span>Tambah Data</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
 
@@ -179,6 +212,7 @@
             const CREATE_SHIPMENT_URL = `{{ route('shipments-2.store') }}`;
         </script>
         <script type="module" src="{{ asset('pages/shipments/js/create.js') }}"></script>
+        <script type="module" src="{{ asset('pages/shipments/js/create-kilogram.js') }}"></script>
     </x-slot>
     <!--  END CUSTOM SCRIPTS FILE  -->
 </x-base-layout>
