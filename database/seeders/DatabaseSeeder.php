@@ -19,24 +19,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+        // app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-        $permissions = config('permission-list');
-        foreach ($permissions as $permission) {
-            Permission::firstOrCreate(['name' => $permission]);
-        }
+        // $permissions = config('permission-list');
+        // foreach ($permissions as $permission) {
+        //     Permission::firstOrCreate(['name' => $permission]);
+        // }
 
-        $superAdminUser = User::firstOrCreate(
-            ['username' => 'superadmin'],
-            [
-                'name' => 'Super Admin',
-                'email' => 'superadmin@gmail.com',
-                'password' => bcrypt('password'),
-                'status' => true
-            ]
-        );
+        // $superAdminUser = User::firstOrCreate(
+        //     ['username' => 'superadmin'],
+        //     [
+        //         'name' => 'Super Admin',
+        //         'email' => 'superadmin@gmail.com',
+        //         'password' => bcrypt('password'),
+        //         'status' => true
+        //     ]
+        // );
 
-        $superAdminUser->syncPermissions($permissions);
+        // $superAdminUser->syncPermissions($permissions);
 
         // \App\Models\User::factory(10)->create();
 
@@ -82,5 +82,16 @@ class DatabaseSeeder extends Seeder
         //         'freight' => 1000000,
         //     ],
         // );
+
+        $tantriUser = User::firstOrCreate([
+            'username' => 'tantri',
+        ], [
+            'name' => 'Tantri',
+            'email' => 'tantri@gmail.com',
+            'password' => bcrypt('Tantri123%%'),
+            'status' => true
+        ]);
+
+        // $tantriUser->syncRoles('admin');
     }
 }
